@@ -14,6 +14,9 @@ public class EmployeeManager {
 	
 	
 	// CRUD
+	/**
+	 * Méthode qui initialise la connexion avec la base de donnée
+	 */
 	protected void setup() {
 		// charge une session Hibernate, la récupère pour créer un registry
 		final StandardServiceRegistry registry = new StandardServiceRegistryBuilder().configure().build();
@@ -31,12 +34,16 @@ public class EmployeeManager {
 		
 	}
 	
-	// méthode qui ferme la session Hibernate
+	/**
+	 * Méthode qui ferme la session Hibernate
+	 */
 	protected void exit () {
 		sessionFactory.close();
 	}
-	
-	// méthode permettant de créer un enregistrement dans la bdd
+		
+	/**
+	 * Méthode permettant la création d'enregistrement dans la base de donnée
+	 */
 	protected void create () {
 		Employee employee1 = new Employee ();
 		employee1.setLastName("Nakamoto");
@@ -64,18 +71,18 @@ public class EmployeeManager {
 
 
 		
-//		Session session1 = sessionFactory.openSession(); //Ouverture d'une session de connexion à la bdd
-//		session1.beginTransaction(); //transaction entre le back et la bdd
-//		session1.save(employee1); // ORM récupère la requête de la bdd 
-//		session1.getTransaction().commit(); // Sauvegarde de cette requête 
-//		session1.close(); //fermeture de la session, les données ont été récupéré
-//		
-//		
-//		Session session2 = sessionFactory.openSession();
-//		session2.beginTransaction();
-//		session2.save(employee2);
-//		session2.getTransaction().commit();
-//		session2.close();
+		Session session1 = sessionFactory.openSession(); //Ouverture d'une session de connexion à la bdd
+		session1.beginTransaction(); //transaction entre le back et la bdd
+		session1.save(employee1); // ORM récupère la requête de la bdd 
+		session1.getTransaction().commit(); // Sauvegarde de cette requête 
+		session1.close(); //fermeture de la session, les données ont été récupéré
+		
+		
+		Session session2 = sessionFactory.openSession();
+		session2.beginTransaction();
+		session2.save(employee2);
+		session2.getTransaction().commit();
+		session2.close();
 		
 		Session session3 = sessionFactory.openSession();
 		session3.beginTransaction();
@@ -165,7 +172,7 @@ public class EmployeeManager {
 	public static void main (String[] args) {
 		EmployeeManager manager = new EmployeeManager();
 		manager.setup();
-		manager.delete(19);
+		manager.create();
 		manager.exit();
 	}
 	

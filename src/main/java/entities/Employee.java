@@ -14,7 +14,7 @@ public class Employee {
 	private String adress;
 	
 	// Appel au constructeur vide
-	public void Employee () {	
+	public Employee () {	
 	}
 	
 	// Précise que la colonne nommée "id" dans la bdd correspond à un id 

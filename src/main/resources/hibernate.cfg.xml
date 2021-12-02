@@ -6,21 +6,19 @@
 
 <hibernate-configuration>
 
-    <!-- a SessionFactory instance listed as /jndi/name -->
     <session-factory>
 
-        <!-- properties -->
-        <!--  Driver de connection à notre bdd -->
+        <!--  DRIVER de connexion à la bdd -->
         <property name="connection.driver_class">
         	com.mysql.jdbc.Driver
         </property>
         
-        <!-- Url de connexion de notre base de donnée -->
+        <!-- URL de connexion à la base de donnée -->
         <property name="connection.url">
         	jdbc:mysql://localhost:3306/employeestouloulou
         </property>
         
-        <!--  Identifiants de connexion -->
+        <!--  IDENTIFIANTS de connexion -->
         <property name="connection.username">
         	root
         </property>
@@ -34,7 +32,7 @@
         </property>
       
       
-      	<!--  On map les entités à la bdd -->
+      	<!--  MAP des entités à la bdd -->
       	<mapping class="entities.Employee" />
      
     </session-factory>
