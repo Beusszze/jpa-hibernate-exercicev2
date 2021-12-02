@@ -1,5 +1,8 @@
 package manager;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;
@@ -11,6 +14,7 @@ import entities.Employee;
 public class EmployeeManager {
 	
 	protected SessionFactory sessionFactory;
+	protected List <Employee> employees;
 	
 	
 	// CRUD
@@ -45,6 +49,7 @@ public class EmployeeManager {
 	 * Méthode permettant la création d'enregistrement dans la base de donnée
 	 */
 	protected void create () {
+		List <Employee> employees  = new ArrayList();
 		Employee employee1 = new Employee ();
 		employee1.setLastName("Nakamoto");
 		employee1.setFirstName("Satoshi");
@@ -52,6 +57,10 @@ public class EmployeeManager {
 		employee1.setRole("CEO");
 		employee1.setPhoneNumber("0606060606");
 		employee1.setAdress("1 rue des Huns");
+		employees.add(employee1);
+
+		
+		
 		
 		Employee employee2 = new Employee ();
 		employee2.setLastName("Aouar");
@@ -60,6 +69,8 @@ public class EmployeeManager {
 		employee2.setRole("Developpeur");
 		employee2.setPhoneNumber("0707070707");
 		employee2.setAdress("2 rue des Deux");
+		employees.add(employee2);
+
 
 		Employee employee3 = new Employee ();
 		employee3.setLastName("Nom de famille");
@@ -68,6 +79,9 @@ public class EmployeeManager {
 		employee3.setRole("Ingénieur");
 		employee3.setPhoneNumber("0706070607");
 		employee3.setAdress("3 rue de Troie");
+		employees.add(employee3);
+
+		
 
 
 		
@@ -160,10 +174,9 @@ public class EmployeeManager {
 	 * @param employee l'employé à supprimer
 	 */
 	protected void delete (long id) {	
-		Employee employee = this.findById(id);
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
-		session.delete(employee);
+		session.delete(this.findById(id));
 		session.getTransaction().commit();
 		session.close();
 	}
@@ -172,7 +185,6 @@ public class EmployeeManager {
 	public static void main (String[] args) {
 		EmployeeManager manager = new EmployeeManager();
 		manager.setup();
-		manager.create();
 		manager.exit();
 	}
 	
