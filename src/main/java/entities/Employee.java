@@ -22,6 +22,10 @@ public class Employee {
 	private String phoneNumber;
 	private String adress;
 	
+	// Relation Many to one avec la classe "Sector"
+	// Plusieurs employés peuvent travailler dans un secteur
+	// Un employé ne travaille que dans un secteur 
+	// Jointure effectuée sur la table "id_sector"
 	@ManyToOne
 	@JoinColumn(name="id_sector")
 	private Sector sector;

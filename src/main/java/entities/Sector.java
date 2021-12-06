@@ -23,13 +23,21 @@ public class Sector {
 	private String name;
 	private String location;
 	
+	// Relation One to many
+	// Un secteur contient plusieurs employés
+	// Un secteur possède donc une liste d'employés
 	@OneToMany(mappedBy="sector", cascade = CascadeType.ALL)
 	private Set <Employee> employees;
 	
+	
+	// Relation Many to many
+	// Précision que la table de jointure se nomme "sector_has_branch" danse la base
+	// La jonction se fait sur les colonnes "id_sector" et "id_branch" 
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "sector_has_branch", 
 				joinColumns = @JoinColumn (name="id_sector"),
 				inverseJoinColumns = @JoinColumn (name ="id_branch"))
+	// Un secteur possède une liste de filiales 
 	private Set<Branch> branches = new HashSet<Branch>();
 	
 	
@@ -84,8 +92,11 @@ public class Sector {
 		this.branches = branches;
 	}
 
-	
-	
-	
+	@Override
+	public String toString() {
+		return "Sector [id=" + id + ", name=" + name + ", location=" + location + ", employees=" + employees
+				+ ", branches=" + branches + "]";
+	}
+
 
 }

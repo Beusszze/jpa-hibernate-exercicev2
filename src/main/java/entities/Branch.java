@@ -22,12 +22,18 @@ public class Branch {
 	private String name;
 	private int employees;
 	
+	// Relation Many to one 
+	// Plusieurs filiales peuvent appartenir à une seule entreprise
+	// Une filiale n'est rattachée qu'à une entreprise mère
 	@ManyToOne
 	// Nom de la colonne dans la bdd où la jointure se fait 
 	@JoinColumn(name="id_company")
-	// Filiale liée à une entreprise
 	private Company company;
 	
+	// Relation Many to many
+	// Une filiale peut contenir plusieurs secteurs
+	// Un secteur peut appartenir à plusieurs filiales
+	// Une filiale contient donc une liste de secteurs
 	@ManyToMany(mappedBy="branches")
 	private Set<Sector> sectors = new HashSet<Sector>();
 	
@@ -76,6 +82,13 @@ public class Branch {
 
 	public void setSectors(Set<Sector> sectors) {
 		this.sectors = sectors;
+	}
+
+
+	@Override
+	public String toString() {
+		return "Branch [id=" + id + ", name=" + name + ", employees=" + employees + ", company=" + company
+				+ ", sectors=" + sectors + "]";
 	}
 	
 	

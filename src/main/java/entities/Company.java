@@ -18,7 +18,9 @@ public class Company {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	private String name;
-	// Relation OneToMany mappée par l'objet company de l'entité Branch (filiale)
+	// Relation OneToMany
+	// Une entreprise peut posséder plusieurs filiales
+	// mappée par l'objet company de l'entité Branch (filiale)
 	@OneToMany(mappedBy ="company", cascade = CascadeType.ALL)
 	// L'entreprise a une liste de filiales 
 	private Set <Branch> branches;
@@ -49,4 +51,13 @@ public class Company {
 	public void setBranches(Set<Branch> branches) {
 		this.branches = branches;
 	}
+
+
+	@Override
+	public String toString() {
+		return "Company [id=" + id + ", name=" + name + ", branches=" + branches + "]";
+	}
+	
+	
+	
 }
