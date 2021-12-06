@@ -34,6 +34,10 @@
       
       	<!--  MAP des entités à la bdd -->
       	<mapping class="entities.Employee" />
+      	<mapping class="entities.Company" />
+      	<mapping class="entities.Branch" />      	
+      	<mapping class="entities.Sector" />
+      	
      
     </session-factory>
 

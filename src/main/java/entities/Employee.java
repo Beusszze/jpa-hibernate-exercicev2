@@ -1,10 +1,19 @@
 package entities;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 @Entity
 @Table (name = "employee")
 public class Employee {
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	private String lastName;
 	private String firstName;
@@ -13,13 +22,16 @@ public class Employee {
 	private String phoneNumber;
 	private String adress;
 	
-	// Appel au constructeur vide
+	@ManyToOne
+	@JoinColumn(name="id_sector")
+	private Sector sector;
+	
 	public Employee () {	
 	}
 	
-	// Précise que la colonne nommée "id" dans la bdd correspond à un id 
+	// Précise que la colonne nommée "id_employee" dans la bdd correspond à un id 
 	@Id 
-	@Column (name="id")
+	@Column (name="id_employee")
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	public long getId() {
 		return id;

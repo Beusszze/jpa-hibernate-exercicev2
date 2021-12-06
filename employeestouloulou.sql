@@ -1,2 +1,1 @@
-SELECT * FROM employeestouloulou.employee;
-
+Select * from companycompany;
